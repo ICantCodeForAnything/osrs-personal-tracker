@@ -12,6 +12,8 @@
     "auth:generate": "npx @better-auth/cli@latest generate --config src/lib/auth/server.ts --output src/lib/auth/schema.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1006.0",
+    "@radix-ui/react-label": "^2.1.8",
     "@vercel/functions": "^3.3.3",
     "better-auth": "^1.4.18",
     "class-variance-authority": "^0.7.1",
@@ -19,6 +21,7 @@
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.1",
     "lucide-react": "^0.564.0",
+    "neon": "^2.0.0",
     "next": "^16.0.10",
     "next-themes": "^0.4.6",
     "pg": "^8.18.0",
