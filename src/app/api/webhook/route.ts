@@ -35,7 +35,17 @@ export async function POST(req: NextRequest) {
     imageUrl = `${process.env.R2_PUBLIC_URL}/${key}`
   }
 
-  await db.insert(webhookEvents).values({ payload, source: "discord", imageUrl })
+  const { type, playerName, accountType, world, extra } = payload
 
+  await db.insert(webhookEvents).values({
+    eventType: type,
+    playerName,
+    accountType,
+    world,
+    extra,
+    imageUrl,
+    payload,
+  })
+  
   return NextResponse.json({ ok: true })
 }
