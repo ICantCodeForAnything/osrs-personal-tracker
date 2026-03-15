@@ -1,7 +1,7 @@
 import { db } from "@/lib/db/client"
+import sharp from "sharp"
 import { webhookEvents } from "@/lib/webhooks/schema"
 import { NextRequest, NextResponse } from "next/server"
-
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 
 const r2 = new S3Client({
@@ -23,17 +23,24 @@ export async function POST(req: NextRequest) {
 
   if (file) {
     const buffer = Buffer.from(await file.arrayBuffer())
-    const key = `webhook-images/${Date.now()}-${file.name}`
+    
+    const compressed = await sharp(buffer)
+      .resize(800, 800, { fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer()
+
+    const key = `webhook-images/${Date.now()}-${file.name.replace(/\.[^.]+$/, "")}.webp`
+    const bucketName = process.env.R2_BUCKET_NAME!
 
     await r2.send(new PutObjectCommand({
-      Bucket: process.env.R2_BUCKET_NAME!,
+      Bucket: bucketName,
       Key: key,
-      Body: buffer,
-      ContentType: file.type,
+      Body: compressed,
+      ContentType: "image/webp",
     }))
 
-    imageUrl = `${process.env.R2_PUBLIC_URL}/${key}`
-  }
+  imageUrl = `${process.env.R2_PUBLIC_URL}/${key}`
+}
 
   const { type, playerName, accountType, world, extra } = payload
 

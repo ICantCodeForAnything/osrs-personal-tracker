@@ -15,6 +15,13 @@
       "when": 1773220380371,
       "tag": "0001_sparkling_sabretooth",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773226034258,
+      "tag": "0002_bright_black_bird",
+      "breakpoints": true
     }
   ]
 }

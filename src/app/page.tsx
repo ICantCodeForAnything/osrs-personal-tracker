@@ -40,6 +40,20 @@ export default async function Home() {
                 priority
               />
             </Link>
+            <Link
+              className="group flex items-center gap-2 leading-none tracking-tight"
+              href="/webhooks"
+            >
+              View Webhooks
+              <Image
+                className="transition-transform duration-200 group-hover:translate-x-1 dark:invert"
+                src="/arrow.svg"
+                alt="arrow"
+                width={16}
+                height={10}
+                priority
+              />
+            </Link>
           </div>
         </main>
         <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-[#E4E5E7] py-5 sm:gap-2 sm:gap-6 md:pb-12 md:pt-10 dark:border-[#303236]">
