@@ -32,6 +32,10 @@ export default async function WebhooksPage({
         Webhook Events <span style={{ color: "#555", fontSize: "0.8rem" }}>({total} total)</span>
       </h1>
 
+      <Link href="/webhooks/levels" style={{ color: "#7cfc6e", marginLeft: "1rem" }}>
+        level analytics →
+      </Link>
+
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.85rem" }}>
         <thead>
           <tr style={{ borderBottom: "1px solid #2a2a2a", color: "#666", textAlign: "left" }}>
